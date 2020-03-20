@@ -31,7 +31,10 @@ args = parser.parse_args()
 content = map(lambda r : r.decode('utf-8'), urllib.request.urlopen(data_url))
 reader = csv.reader(content, delimiter=',', quotechar='|')
 header = next(reader)
+
 idx_first_day = max(idx_first_day, len(header) - args.days)
+last_idx = -args.fit
+
 labels = header[idx_first_day:]
 xdata  = [i for i in range(0, len(labels))]
 
@@ -53,8 +56,7 @@ for cntry, row in values.items():
     c = colors[cntry]
     plt.plot(xdata, ydata, c+'x')
 
-    last = -args.fit
-    popt, pconv = curve_fit(func, xdata[last:], ydata[last:])
+    popt, pconv = curve_fit(func, xdata[last_idx:], ydata[last_idx:])
     yfit = [ func(x, popt[0], popt[1]) for x in xdata ]
     k = popt[0]
     b = popt[1]
