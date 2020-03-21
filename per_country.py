@@ -12,13 +12,19 @@ data_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/css
 
 idx_first_day = 4
 
+# Map each country to plot to a color and a marker
+# If the JHU data contains provinces, we sum all provinces together to form 
+# a value for the entire country.
+# For available colors, see:
+# https://matplotlib.org/3.1.0/gallery/color/named_colors.html
 colors = {
-        "US"      : "r",
-        "Austria" : "m",
-        "Italy"   : "g",
-        "Spain"   : "y",
-        "France"  : "b",
-        "Germany" : "k",
+        'US'      : ('r',        'x'),
+        'Austria' : ('m',        'x'),
+        'Italy'   : ('g',        'x'),
+        'Spain'   : ('y',        'x'),
+        'France'  : ('b',        'x'),
+        'Germany' : ('k',        'x'),
+        'Iran'    : ('lime',     'x'),
         }
 
 values = {}
@@ -53,8 +59,8 @@ def func(x, k, b):
 
 for cntry, row in values.items():
     ydata = [ int(v) for v in row ]
-    c = colors[cntry]
-    plt.plot(xdata, ydata, c+'x')
+    color, marker = colors[cntry]
+    plt.plot(xdata, ydata, color=color, marker=marker, linestyle='dotted')
 
     popt, pconv = curve_fit(func, xdata[last_idx:], ydata[last_idx:])
     yfit = [ func(x, popt[0], popt[1]) for x in xdata ]
@@ -62,7 +68,7 @@ for cntry, row in values.items():
     b = popt[1]
     d = math.log(2) / k
     lab = '{} k={:.2f} b={:.2f} d={:.2f}'.format(cntry, k, b, d)
-    plt.plot(xdata, yfit, c, label=lab)
+    plt.plot(xdata, yfit, color=color, label=lab)
 
 plt.xticks(xdata, labels, rotation='vertical')
 plt.ylabel('y')
