@@ -71,7 +71,7 @@ for cntry, row in values.items():
     plt.plot(xdata, yfit, color=color, label=lab)
 
 plt.xticks(xdata, labels, rotation='vertical')
-plt.ylabel('y')
+plt.ylabel('#cases')
 plt.yscale('log')
 plt.legend()
 plt.show()
