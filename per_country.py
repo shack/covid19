@@ -69,7 +69,11 @@ def func(x, k, b):
 for cntry, row in values.items():
     ydata = [ int(v) for v in row ]
     color, marker = colors[cntry]
-    plt.plot(xdata, ydata, color=color, marker=marker, linestyle='dotted')
+    plt.plot(xdata, ydata,
+            color=color,
+            marker=marker,
+            linestyle='dotted',
+            linewidth=1)
 
     popt, pconv = curve_fit(func, xdata[idx_fit:], ydata[idx_fit:])
     yfit = [ func(x, popt[0], popt[1]) for x in xdata ]
