@@ -27,7 +27,6 @@ colors = {
         'Spain'   : ('y',        'x'),
         'France'  : ('b',        'x'),
         'Germany' : ('k',        'x'),
-        'Iran'    : ('lime',     'x'),
         }
 
 values = {}
