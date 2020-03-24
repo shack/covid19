@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from scipy.optimize import curve_fit
 
-data_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+data_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 
 idx_first_day = 4
 
@@ -21,12 +21,12 @@ idx_first_day = 4
 # For available colors, see:
 # https://matplotlib.org/3.1.0/gallery/color/named_colors.html
 colors = {
-        'US'      : ('r',        'x'),
-        'Austria' : ('m',        'x'),
-        'Italy'   : ('g',        'x'),
-        'Spain'   : ('y',        'x'),
-        'France'  : ('b',        'x'),
-        'Germany' : ('k',        'x'),
+        'US'          : ('r',        'x'),
+        'Austria'     : ('m',        'x'),
+        'Italy'       : ('g',        'x'),
+        'Spain'       : ('y',        'x'),
+        'France'      : ('b',        'x'),
+        'Germany'     : ('k',        'x'),
         }
 
 values = {}
