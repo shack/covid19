@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 from datetime import datetime
 from scipy.optimize import curve_fit
+from matplotlib.backends.backend_pdf import PdfPages
 
 data_url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 
@@ -21,19 +22,20 @@ idx_first_day = 4
 # For available colors, see:
 # https://matplotlib.org/3.1.0/gallery/color/named_colors.html
 colors = {
-        'US'          : ('r',        'x'),
-        'Austria'     : ('m',        'x'),
-        'Italy'       : ('g',        'x'),
-        'Spain'       : ('y',        'x'),
-        'France'      : ('b',        'x'),
-        'Germany'     : ('k',        'x'),
+        'US'        : ('r',        'x'),
+        'UK'        : ('m',        'x'),
+        'Italy'     : ('g',        'x'),
+        'Spain'     : ('y',        'x'),
+        'France'    : ('b',        'x'),
+        'Germany'   : ('k',        'x'),
         }
 
 values = {}
 
 parser = argparse.ArgumentParser(description='Plot COVID-19 infection data.')
-parser.add_argument('-d', '--days', default=30, type=int, help='show only last N days [default 20]')
-parser.add_argument('-f', '--fit',  default=5,  type=int, help='fit curve to last N days [default 5]')
+parser.add_argument('-d', '--days', default=30,   type=int, help='show only last N days [default 20]')
+parser.add_argument('-f', '--fit',  default=5,    type=int, help='fit curve to last N days [default 5]')
+parser.add_argument('-o', '--pdf',  default=None, type=str, help='output to PDF file [default No]')
 args = parser.parse_args()
 
 # load data
@@ -65,6 +67,7 @@ for row in reader:
 def func(x, k, b):
     return np.exp(k * x + b)
 
+plt.figure(figsize=(12, 8))
 # iterate over extracted data and fit functions
 for cntry, row in values.items():
     ydata = [ int(v) for v in row ]
@@ -86,5 +89,12 @@ for cntry, row in values.items():
 plt.xticks(xdata, labels, rotation='vertical')
 plt.ylabel('#cases')
 plt.yscale('log')
-plt.legend()
-plt.show()
+plt.tight_layout()
+
+if args.pdf:
+    with PdfPages(args.pdf) as pdf:
+        pdf.savefig()
+        plt.close()
+else:
+    plt.legend()
+    plt.show()
