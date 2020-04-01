@@ -90,11 +90,11 @@ plt.xticks(xdata, labels, rotation='vertical')
 plt.ylabel('#cases')
 plt.yscale('log')
 plt.tight_layout()
+plt.legend()
 
 if args.pdf:
     with PdfPages(args.pdf) as pdf:
         pdf.savefig()
         plt.close()
 else:
-    plt.legend()
     plt.show()
