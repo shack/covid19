@@ -10,6 +10,7 @@ There are two command line switches:
 ```
 -d DAYS, --days DAYS  show only last N days [default 20]
 -f FIT, --fit FIT     fit curve to last N days [default 5]
+-o FILE, --pdf FILE   output to pdf file [default no]
 ```
 
 You need `numpy` and `scipy` installed and a working internet connection to download the data.
