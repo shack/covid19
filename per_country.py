@@ -33,7 +33,7 @@ colors = {
 values = {}
 
 parser = argparse.ArgumentParser(description='Plot COVID-19 infection data.')
-parser.add_argument('-d', '--days', default=30,   type=int, help='show only last N days [default 20]')
+parser.add_argument('-d', '--days', default=21,   type=int, help='show only last N days [default 21]')
 parser.add_argument('-f', '--fit',  default=5,    type=int, help='fit curve to last N days [default 5]')
 parser.add_argument('-o', '--pdf',  default=None, type=str, help='output to PDF file [default No]')
 args = parser.parse_args()
