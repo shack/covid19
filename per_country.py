@@ -28,6 +28,8 @@ colors = {
         'Spain'     : ('y',        'x'),
         'France'    : ('b',        'x'),
         'Germany'   : ('k',        'x'),
+        'Sweden'    : ('gold',     'x'),
+        'United Kingdom' : ('royalblue',        'x'),
         }
 
 values = {}
